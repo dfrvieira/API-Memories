@@ -26,3 +26,6 @@ mongoose
 app.listen(process.env.PORT || 42080, () => {
   console.log("Servidor a correr!");
 });
+
+if (process.env.NODE_ENV === 'production'){app.use(express.static('client/build'));
+};
