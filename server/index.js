@@ -11,10 +11,14 @@ const CONNECTION_URL = 'mongodb+srv://user:Diogo123@cluster0.qamnr.mongodb.net/m
 
 app.use(bodyParser.json({ limit: '30mb', extended: true }))
 app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
-
 app.use(cors());
+
 app.use(express.json());
 app.use("/posts", postRoutes);
+
+app.get('/', (req,res)=>{
+  res.send('Bem-vindo a esta API');
+});
 
 mongoose
   .connect(CONNECTION_URL,{ useNewUrlParser: true, useUnifiedTopology: true })
@@ -26,6 +30,3 @@ mongoose
 app.listen(process.env.PORT || 42080, () => {
   console.log("Servidor a correr!");
 });
-
-if (process.env.NODE_ENV === 'production'){app.use(express.static('client/build'));
-};
